@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = "github_dark",
+	theme = "vscode_dark",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
