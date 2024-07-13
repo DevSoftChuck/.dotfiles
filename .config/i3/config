@@ -109,35 +109,35 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-bindsym $mod+Shift+a focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# show the next scratchpad window or hide the focused scratchpad window
-bindsym $mod+minus scratchpad show
+# # toggle tiling / floating
+# bindsym $mod+Shift+space floating toggle
+#
+# # change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+#
+# # focus the parent container
+# # bindsym $mod+a focus parent
+#
+# # focus the child container
+# bindsym $mod+Shift+a focus child
+#
+# # move the currently focused window to the scratchpad
+# bindsym $mod+Shift+minus move scratchpad
+#
+# # show the next scratchpad window or hide the focused scratchpad window
+# bindsym $mod+minus scratchpad show
 
 # move focused floating window to the center of all outputs
 # bindsym $mod+Shift+h move absolute position center
 
 # move focused floating window to the current position of the cursor
-bindsym $mod+Shift+m move position mouse
+# bindsym $mod+Shift+m move position mouse
 
 # set a window to stick to the glass
-bindsym $mod+Shift+s sticky toggle
+# bindsym $mod+Shift+s sticky toggle
 
 # sticky preview for media
-bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
+# bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
 
 # shortcut to change window border
 bindsym $mod+t border normal    0
@@ -183,10 +183,10 @@ bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 5%-
 
 # notification
-# bindsym Ctrl+space              exec --no-startup-id dunstctl close
-# bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
-# bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
-# bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
+bindsym Ctrl+space              exec --no-startup-id dunstctl close
+bindsym Ctrl+Shift+space        exec --no-startup-id dunstctl close-all
+bindsym Ctrl+grave              exec --no-startup-id dunstctl history-pop
+bindsym Ctrl+Shift+period       exec --no-startup-id dunstctl context
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -256,13 +256,8 @@ bar {
     }
 }
 
-# local config file
-# include local.conf
-
 # startup applications
-# exec_always --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Source-Sans-Pro"
-# exec_always --no-startup-id nm-applet
-# exec_always --no-startup-id pulseaudio --start
-# exec_always --no-startup-id lxpolkit
-# exec_always --no-startup-id feh --bg-fill ~/Public/desktop/dark_planet_minimalist.png
-# exec_always --no-startup-id picom
+exec_always --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Source-Sans-Pro"
+exec_always --no-startup-id pulseaudio --start
+exec_always --no-startup-id feh --bg-fill ~/Pictures/dark_planet_minimalist.png
+exec_always --no-startup-id redshift -x && redshift -O 3000
