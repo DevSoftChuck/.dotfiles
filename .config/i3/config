@@ -260,7 +260,7 @@ bar {
 # startup applications
 exec_always --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Source-Sans-Pro"
 exec_always --no-startup-id pulseaudio --start
-exec_always --no-startup-id feh --bg-fill ~/Pictures/dark_planet_minimalist.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Matrix.jpg
 exec_always --no-startup-id redshift -x && redshift -O 3000
 exec_always --no-startup-id i3-msg 'workspace $ws1; exec gnome-terminal'
 exec_always --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal -- zsh -c "tmux"'
