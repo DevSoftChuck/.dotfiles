@@ -9,13 +9,23 @@ URGENT_VALUE=10
 
 if [[ "${BATTERY_STATE}" = "Charging" ]]; then
   echo "${BATTERY_POWER}%+"
-  echo ""
+  echo "${BATTERY_POWER}%+"
 elif [[ "${BATTERY_STATE}" = "Discharging" ]]; then
   echo "${BATTERY_POWER}%-"
-  echo ""
+  echo "${BATTERY_POWER}%-"
 else
   echo "${BATTERY_POWER}%"
-  echo ""
+  echo "${BATTERY_POWER}%"
+fi
+
+if [[ "${BATTERY_POWER}" -gt 50 ]]; then
+    echo "#00FF00"
+elif [[ "${BATTERY_POWER}" -lt 50 && "${BATTERY_POWER}" -gt 30 ]]; then
+    echo "#FFF600"
+elif [[ "${BATTERY_POWER}" -lt 20 && "${BATTERY_POWER}" -gt 10 ]]; then
+    echo "#FFAE00"
+elif [[ "${BATTERY_POWER}" -lt 10 ]]; then
+    echo "#FF0000"
 fi
 
 if [[ "${BATTERY_POWER}" -le "${URGENT_VALUE}" ]]; then

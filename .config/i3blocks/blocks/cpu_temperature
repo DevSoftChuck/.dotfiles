@@ -26,19 +26,18 @@ if [[ "${TOTAL_COUNT}" -gt 1 ]]; then
   AVERAGE_TEMP="~ ${AVERAGE_TEMP}"
 fi
 
-# if [[ "${AVERAGE_TEMP}" -gt 90 ]]; then
-#     echo "#FF0000"
-# elif [[ "${AVERAGE_TEMP}" -lt 90 && "${AVERAGE_TEMP}" -gt 70 ]]; then
-#     echo "#FFAE00"
-# elif [[ "${AVERAGE_TEMP}" -lt 70 && "${AVERAGE_TEMP}" -gt 50 ]]; then
-#     echo "#FFF600"
-# elif [[ "${AVERAGE_TEMP}" -lt 50 ]]; then
-#     echo -e "#00FF00${AVERAGE_TEMP}°C"
-# fi
+echo "${AVERAGE_TEMP}°C"
+echo "${AVERAGE_TEMP}°C"
 
-echo "${AVERAGE_TEMP}°C"
-echo "${AVERAGE_TEMP}°C"
-echo ""
+if [[ "${AVERAGE_TEMP}" -gt 90 ]]; then
+    echo "#FF0000"
+elif [[ "${AVERAGE_TEMP}" -lt 90 && "${AVERAGE_TEMP}" -gt 70 ]]; then
+    echo "#FFAE00"
+elif [[ "${AVERAGE_TEMP}" -lt 70 && "${AVERAGE_TEMP}" -gt 50 ]]; then
+    echo "#FFF600"
+elif [[ "${AVERAGE_TEMP}" -lt 50 ]]; then
+    echo -e "#a8fcdf"
+fi
 
 if [[ "${IS_URGENT}" -eq 1 ]]; then
   exit 33

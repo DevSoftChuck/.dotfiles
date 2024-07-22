@@ -110,12 +110,10 @@ interval=5
 [cpu_temperature]
 # label=T-CPU
 interval=1
-color=#c1dfe4
 
 [gpu_temperature]
 # label=T-GPU
 interval=1
-color=#a8fcdf
 
 # Key indicators
 #
