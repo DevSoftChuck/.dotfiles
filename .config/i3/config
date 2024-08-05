@@ -26,10 +26,10 @@ set $right  l
 set $ws1    "1:   Terminal "
 set $ws2    "2:   Code "
 set $ws3    "3:   Brave "
-set $ws4    "4: @  Work "
+set $ws7    "4:   Files "
 set $ws5    "5: ⚔  Games "
 set $ws6    "6:   Media "
-set $ws7    "7:   Files "
+set $ws4    "7: @  Work "
 set $ws8    "8:   Chat "
 set $ws9    "9:   Notes "
 set $ws10   "10:   Settings "
@@ -149,10 +149,10 @@ bindsym $mod+u border none
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3; exec [ $(ps h -C brave | wc -l) = 0 ] && flatpak run com.brave.Browser
-bindsym $mod+4 workspace $ws4
+bindsym $mod+4 workspace $ws4; exec [ $(ps h -C nautilus | wc -l) = 0 ] && nautilus
 bindsym $mod+5 workspace $ws5; exec [ $(ps h -C steam | wc -l) = 0 ] && flatpak run com.valvesoftware.Steam
 bindsym $mod+6 workspace $ws6; exec [ $(ps h -C alexandria | wc -l) = 0 ] && flatpak run io.github.btpf.alexandria
-bindsym $mod+7 workspace $ws7; exec [ $(ps h -C nautilus | wc -l) = 0 ] && nautilus
+bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8; exec [ $(ps h -C Discord | wc -l) = 0 ] && flatpak run com.discordapp.Discord
 bindsym $mod+9 workspace $ws9; exec [ $(ps h -C AppFlowy | wc -l) = 0 ] && flatpak run io.appflowy.AppFlowy
 bindsym $mod+0 workspace $ws10; exec [ $(ps h -C missioncenter | wc -l) = 0 ] && flatpak run io.missioncenter.MissionCenter
@@ -258,7 +258,7 @@ bar {
 }
 
 # startup applications
-exec_always --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Source-Sans-Pro"
+exec_always --no-startup-id xautolock -time 40 -locker "i3lock-fancy -f Source-Sans-Pro"
 exec_always --no-startup-id pulseaudio --start
 exec_always --no-startup-id feh --bg-fill ~/Pictures/Matrix.jpg
 exec_always --no-startup-id redshift -x && redshift -O 3000
@@ -267,9 +267,9 @@ exec_always --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal -- zsh -
 exec_always --no-startup-id i3-msg 'workspace $ws3; exec flatpak run com.brave.Browser'
  
 assign [class="brave-browser"]      $ws3
+assign [class="org.gnome.Nautilus"] $ws4
 assign [class="steam"]              $ws5
 assign [class="alexandria"]         $ws6
-assign [class="org.gnome.Nautilus"] $ws7
 assign [class="discord"]            $ws8
 assign [class="AppFlowy"]           $ws9
 assign [class="missioncenter"]      $ws10
