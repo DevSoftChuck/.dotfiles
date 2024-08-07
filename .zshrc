@@ -24,3 +24,8 @@ alias gomodvendor="go mod verify && go mod tidy && go mod vendor"
 
 bindkey -s ^f "fuzzy_finder\n"
 bindkey -s ^s "~/.local/scripts/tmux-cht.sh\n"
+
+# Function to execute unreal engine script
+ue(){
+    /bin/bash $HOME/.compile-unreal-engine-commands
+}

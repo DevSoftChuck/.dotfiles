@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Get the project name from the current directory
+project="${PWD##*/}"
+
+if [ ! -f .vscode/compileCommands_${project}.json ]; then
+    echo "CompileCommands file not found!"
+    exit 1
+fi
+# Read the compile commands file
+compile_commands=$(jq -r '.[] | .file' ".vscode/compileCommands_${project}.json")
+
+# Create an empty array to hold modified JSON objects
+COUNTER=0
+
+echo "[" >> compile_commands.tmp
+# Loop through each compile command
+for file in $compile_commands; do
+  COUNTER=$((COUNTER + 1))
+  # Modify the arguments for each file
+  arguments="clang++ -std=c++20 -ferror-limit=0 -Wall -Wextra -Wpedantic -Wshadow-all -Wno-unused-parameter $file $(jq -r '.[] | .arguments[1]' .vscode/compileCommands_${project}.json | uniq)"
+
+  # Construct the modified JSON object
+  object="{ \"file\": \"$file\", \"arguments\": [\"$arguments\"], \"directory\": \"/home/chm/Unreal_Engine/Engine/Source\" }"
+
+  # Append a comma unless it's the last object
+  if [ "$COUNTER" -ne "${#compile_commands[@]}" ]; then
+    object="$object,"
+  fi
+
+  # Append the modified object to a temporary file
+  echo "$object" >> compile_commands.tmp
+done
+
+echo "]" >> compile_commands.tmp
+# Replace the original compile commands file with the temporary one
+mv compile_commands.tmp compile_commands.json
+
+# Remove any potential empty lines at the end of the file
+sed -i '/^$/d' compile_commands.json
+
+echo "compile_commands.json successfully modified!"
