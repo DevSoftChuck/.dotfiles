@@ -27,5 +27,19 @@ bindkey -s ^s "~/.local/scripts/tmux-cht.sh\n"
 
 # Function to execute unreal engine script
 ue(){
-    /bin/bash $HOME/.compile-unreal-engine-commands
+    /bin/bash ~/Unreal_Engine/Engine/Build/BatchFiles/Linux/Build.sh \
+        ~/Games/MyProject/MyProject.uproject \
+        -game \
+        -engine MyProjectEditor Linux Development
+
+    /bin/bash ~/Unreal_Engine/Engine/Build/BatchFiles/Linux/Build.sh \
+        -mode=GenerateClangDatabase \
+        -project=/home/chm/Games/MyProject/MyProject.uproject \
+        -game \
+        -engine MyProjectEditor Linux Development
+
+    mv ~/Unreal_Engine/compile_commands.json ~/Games/MyProject/ 
 }
+
+# Set up fzf key bindings and fuzzy completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
