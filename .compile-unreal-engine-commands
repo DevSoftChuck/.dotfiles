@@ -14,7 +14,7 @@ total_lines=$(jq -r '.[] | .file' ".vscode/compileCommands_${project}.json" | wc
 arguments1=$(jq -r '.[] | .arguments[1]' .vscode/compileCommands_${project}.json | uniq)
 
 # Create an empty array to hold modified JSON objects
-COUNTER=0
+# COUNTER=0
 
 # echo $total_lines
 echo "[" >> compile_commands.tmp
@@ -29,15 +29,15 @@ for file in $compile_commands; do
     object="${object}\"directory\": \"/home/chm/Unreal_Engine/Engine/Source\"}"
 
     # Append a comma unless it's the last object
-    if [ "$COUNTER" -lt "$total_lines" ]; then
-        object="$object,"
-    fi
+    # if [ $COUNTER -lt $total_lines ]; then
+    #     object="$object,"
+    # fi
 
     # Append the modified object to a temporary file
-    echo "$object" >> compile_commands.tmp
+    echo "$object," >> compile_commands.tmp
 done
 
 echo "]" >> compile_commands.tmp
 
-jq . compile_commands.json > compile_commands-copy.json
+jq . compile_commands.tmp > compile_commands.json
 echo "compile_commands.json successfully modified!"

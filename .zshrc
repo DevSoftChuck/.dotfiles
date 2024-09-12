@@ -26,19 +26,22 @@ bindkey -s ^f "fuzzy_finder\n"
 bindkey -s ^s "~/.local/scripts/tmux-cht.sh\n"
 
 # Function to execute unreal engine script
+# project_folder=$(find /home/chm/Games/Unreal\ Projects -type f -name 'Freedom.uproject' -exec dirname {} \; | sort -u | awk -F/ '{print $NF}')
 ue(){
+    project_folder=$(basename "$(pwd)")
+
     /bin/bash ~/Unreal_Engine/Engine/Build/BatchFiles/Linux/Build.sh \
-        ~/Games/MyProject/MyProject.uproject \
+        ~/Games/Unreal\ Projects/$project_folder/$project_folder.uproject \
         -game \
-        -engine MyProjectEditor Linux Development
+        -engine $project_folder\Editor Linux Development
 
     /bin/bash ~/Unreal_Engine/Engine/Build/BatchFiles/Linux/Build.sh \
         -mode=GenerateClangDatabase \
-        -project=/home/chm/Games/MyProject/MyProject.uproject \
+        -project=/home/chm/Games/Unreal\ Projects/$project_folder/$project_folder.uproject \
         -game \
-        -engine MyProjectEditor Linux Development
+        -engine $project_folder\Editor Linux Development
 
-    mv ~/Unreal_Engine/compile_commands.json ~/Games/MyProject/ 
+    cp ~/Unreal_Engine/compile_commands.json ~/Games/Unreal\ Projects/$project_folder/ 
 }
 
 # Set up fzf key bindings and fuzzy completion
