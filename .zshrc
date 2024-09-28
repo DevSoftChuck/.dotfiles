@@ -23,6 +23,7 @@ alias python="python3"
 alias gomodvendor="go mod verify && go mod tidy && go mod vendor"
 
 bindkey -s ^f "fuzzy_finder\n"
+bindkey -s ^k "clear\n"
 bindkey -s ^s "~/.local/scripts/tmux-cht.sh\n"
 
 # Function to execute unreal engine script
@@ -46,3 +47,4 @@ ue(){
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export KUBECONFIG=$HOME/.kube/config
