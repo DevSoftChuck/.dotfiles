@@ -48,3 +48,5 @@ ue(){
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export KUBECONFIG=$HOME/.kube/config
+export SUDO_EDITOR="nvim"
+export SOPS_AGE_KEY_FILE=~/.age/age-key
