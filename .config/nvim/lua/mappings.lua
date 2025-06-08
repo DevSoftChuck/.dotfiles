@@ -42,4 +42,12 @@ map("n", "<Leader>dq", function()
   require("dapui").close()
 end, { desc = "Close" })
 
+-- Ollama - gen.nvim
+map({ "v" }, "<Leader>oe", ":Gen Enhance_Grammar_Spelling<CR>", { desc = "Enhance_Grammar_Spelling" })
+map({ "v" }, "<Leader>oa", ":Gen Ask<CR>", { desc = "Ask" })
+map({ "v" }, "<Leader>os", ":Gen Summarize<CR>", { desc = "Summarize" })
+map({ "v" }, "<Leader>ow", ":Gen Enhance_Wording<CR>", { desc = "Enhance_Wording" })
+map({ "v" }, "<Leader>or", ":Gen Review_Code<CR>", { desc = "Review_Code" })
+map({ "v" }, "<Leader>oc", ":Gen Enhance_Code<CR>", { desc = "Enhance_Code" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
