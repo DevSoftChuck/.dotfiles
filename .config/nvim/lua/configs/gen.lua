@@ -29,24 +29,3 @@ local opts = {
 }
 
 require("gen").setup(opts)
--- Custom Prompts
--- require('gen').prompts['Elaborate_Text'] = {
---   prompt = "Elaborate the following text:\n$text",
---   replace = true
--- }
--- require('gen').prompts['Fix_Code'] = {
---   prompt = "Fix the following code. Only output the result in format ```$filetype\n...\n```:\n```$filetype\n$text\n```",
---   replace = true,
---   extract = "```$filetype\n(.-)```"
--- }
---
--- You can use the following properties per prompt:
-
--- prompt: (string | function) Prompt either as a string or a function which should return a string. The result can use the following placeholders:
--- $text: Visually selected text or the content of the current buffer
--- $filetype: File type of the buffer (e.g. javascript)
--- $input: Additional user input
--- $register: Value of the unnamed register (yanked text)
--- replace: true if the selected text shall be replaced with the generated output
--- extract: Regular expression used to extract the generated result
--- model: The model to use, default: mistral
