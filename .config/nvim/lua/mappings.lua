@@ -7,6 +7,10 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "<C-f>", "<cmd>silent !tmux neww fuzzy_finder<CR>")
+map("v", "<leader>cf", "<cmd>CodeCompanion /fix<CR>", { desc = "Fix code" })
+map({"v", "n"}, "<leader>cc", "<cmd>CodeCompanionChat<CR>", { desc = "Open chat" })
+map({"v", "n"}, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Show actions" })
+map("v", "<leader>ce", "<cmd>CodeCompanion /explain<CR>", { desc = "Explain code" })
 
 
 map("n", "<F5>", function()
