@@ -1,70 +1,5 @@
 return {
     {
-        "yetone/avante.nvim",
-        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-        build = "make", -- ⚠️ must add this line! ! !
-        -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-        event = "VeryLazy",
-        version = false, -- Never set this value to "*"! Never!
-        ---@module 'avante'
-        ---@type avante.Config
-        opts = {
-            -- add any opts here
-            -- for example
-            provider = "ollama",
-            providers = {
-                ollama = {
-                    endpoint = "http://localhost:11434",
-                    model = "phi4:latest",
-                },
-            },
-        },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            {
-                -- support for image pasting
-                "HakonHarnes/img-clip.nvim",
-                event = "VeryLazy",
-                opts = {
-                    -- recommended settings
-                    default = {
-                        embed_image_as_base64 = false,
-                        prompt_for_file_name = false,
-                        drag_and_drop = {
-                            insert_mode = true,
-                        },
-                        -- required for Windows users
-                        use_absolute_path = true,
-                    },
-                },
-            },
-            {
-                -- Make sure to set this up properly if you have lazy=true
-                'MeanderingProgrammer/render-markdown.nvim',
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
-        },
-    },
-
-    {
-        "sphamba/smear-cursor.nvim",
-        lazy = false,
-        config = function()
-            require "configs.smear-cursor"
-        end,
-    },
-    {
-        "karb94/neoscroll.nvim",
-        config = function()
-            require "configs.neoscroll"
-        end,
-    },
-    {
         "kdheepak/lazygit.nvim",
         cmd = {
             "LazyGit",
@@ -194,20 +129,36 @@ return {
                 "go",
                 "cpp",
                 "python",
+                "markdown",
+                "markdown_inline",
             },
         },
     },
 
     {
-        "David-Kunz/gen.nvim",
+        "olimorris/codecompanion.nvim",
+        opts = {
+            strategies = {
+                chat = {
+                    adapter = "ollama",
+                    -- model = "gemma3:12b"
+                    -- model = "deepseek-r1:14b"
+                    -- model = "llama3.1:8b"
+                    model = "gpt-oss:20b"
+                },
+                inline = {
+                    name = "copilot",
+                    model = "gpt-4.1",
+                },
+                opts = {
+                    log_level = "DEBUG",
+                },
+            },
+        },
         lazy = false,
-        config = function()
-            require "configs.gen"
-        end,
-    },
-
-    {
-        "github/copilot.vim",
-        lazy = false,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "ravitemer/mcphub.nvim"
+        },
     },
 }
