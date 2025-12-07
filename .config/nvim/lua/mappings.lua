@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -11,6 +9,23 @@ map("v", "<leader>cf", "<cmd>CodeCompanion /fix<CR>", { desc = "Fix code" })
 map({"v", "n"}, "<leader>cc", "<cmd>CodeCompanionChat<CR>", { desc = "Open chat" })
 map({"v", "n"}, "<leader>ca", "<cmd>CodeCompanionActions<CR>", { desc = "Show actions" })
 map("v", "<leader>ce", "<cmd>CodeCompanion /explain<CR>", { desc = "Explain code" })
+
+
+vim.keymap.set('n', '<leader>fd', function()
+  require('telescope.builtin').find_files({
+    prompt_title = 'Find Files in Directory',
+    find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+    cwd = vim.fn.input('Directory: ', vim.fn.getcwd() .. '/', 'dir'),
+  })
+end, { desc = 'Find files in chosen directory' })
+
+vim.keymap.set("n", "<leader>fg", function()
+  require('telescope.builtin').live_grep({
+    prompt_title = "Grep in Folder",
+    cwd = vim.fn.expand("%:p:h"),  -- directory of current file
+    additional_args = { "--hidden", "--no-ignore" },  -- search hidden & ignored files
+  })
+end, { desc = "Live grep in current file's directory" })
 
 
 map("n", "<F5>", function()
@@ -46,4 +61,5 @@ end, { desc = "Open" })
 map("n", "<Leader>dq", function()
   require("dapui").close()
 end, { desc = "Close" })
+
 
